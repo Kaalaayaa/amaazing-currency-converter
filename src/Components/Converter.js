@@ -5,6 +5,7 @@ import logo from "../images/hatch-logo.png"
 import '../App.css';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
+import {Link} from "react-router-dom"
 
 function Converter() {
   
@@ -45,8 +46,9 @@ function Converter() {
         <img src={logo} alt="hatch logo" />
       </div>
       <div className='header'>
-          <h1>Title</h1>
+          <h1>Convert currencies in real time.</h1>
       </div>
+      <div className='middle'>
       <div className='container'>
         <div className='amount'>
             <label>Amount</label>
@@ -58,7 +60,10 @@ function Converter() {
         </div>
         <div className="from">
           <label>From</label>
-          <Dropdown 
+          <Dropdown
+            controlClassName='myControlClassName' 
+            menuClassName='myMenuClassName'
+            className='dropdown'
             options={options} 
             placeholder="From"
             onChange={(e) => { setFrom(e.value)}}
@@ -70,7 +75,10 @@ function Converter() {
         </div>
         <div className="to">
           <label>To</label>
-          <Dropdown 
+          <Dropdown
+            controlClassName='myControlClassName' 
+            menuClassName='myMenuClassName'
+            className='dropdown'
             options={options} 
             placeholder="To"
             onChange={(e) => { setTo(e.value)}}
@@ -81,11 +89,12 @@ function Converter() {
             <button onClick={()=>{convert()}}>Convert</button>
         </div>
       </div>
-      <div className='result'>
-          <p>{input+" "+from+" = " }</p>
-          <p>{output.toFixed(2) + " " + to}</p>
+      <Link className='history-link' to={"/history"}>View conversion history ></Link>
       </div>
-      <p>View conversion history</p>
+      <div className='result'>
+          <p className='first-currency'>{input+" "+from+" = " }</p>
+          <p className='second-currency'>{output.toFixed(2) + " " + to}</p>
+      </div>
     </div>
   );
 }
